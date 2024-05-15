@@ -1,7 +1,5 @@
 const getMean = (array) => array.reduce((acc, el) => acc + el, 0) / array.length;
-const sorted = array.sort((a, b) => a - b);
   
-
 const getMedian = (array) => {
   const sorted = array.sort((a, b) => a - b);
   const median =
@@ -11,12 +9,27 @@ const getMedian = (array) => {
 return median;
 };
 
+const getMode =(array) => {
+   const counts = {};
+   array.forEach(el => counts[el] = (counts[el] || 0) + 1);
+   console.log(counts);
+    if (new Set(Object.values(counts)).size === 1){
+    return null};
+    const highest = Object.keys(counts).sort((a, b) => counts[b] - counts[a])[0];
+    const mode = Object.keys(counts).filter(el => counts[el] === counts[highest]);
+};
+
 const calculate = () => {
     const value = document.querySelector ("#numbers").value;
     const array = value.split(/,\s*/g);
     const numbers = array.map(el => Number(el)).filter(el => !isNaN(el));
     document.querySelector("#mean").textContent = mean;
     const mean = getMean(numbers);
+    const median = getMedian(numbers);
+
+    
+    document.querySelector('#mean').textContent = mean;
+    document.querySelector('#median').textContent = median;
 
 
 };
