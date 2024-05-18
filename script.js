@@ -35,6 +35,12 @@ const getVariance = (array) => {
   return variance;
 };
 
+const getStandardDeviation = (array) => {
+  const variance = getVariance(array);
+  const standardDeviation = Math.sqrt(variance);
+  return standardDeviation;
+};
+
 const calculate = () => {
     const value = document.querySelector ("#numbers").value;
     const array = value.split(/,\s*/g);
@@ -45,6 +51,8 @@ const calculate = () => {
     const mode = getMode(numbers);
     const range = getRange(numbers);
     const variance = getVariance(numbers);
+    const standardDeviation = getStandardDeviation(numbers);
+    document.querySelector('#standardDeviation').textContent = standardDeviation;
     document.querySelector('#variance').textContent = variance;
     document.querySelector('#range').textContent = range;
     document.querySelector('#mode').textContent = mode;
